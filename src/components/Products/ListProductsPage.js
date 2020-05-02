@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
 import ProductItem from "./ProductItem";
+import ProductsServices from "./ProductsServices";
+
+
 class ListProductsPage extends Component {
-    state = {  }
+    state = {
+        products:[{}]
+      }
+    
+    componentDidMount(){
+        ProductsServices.getProducts()
+        .then((responce)=>{
+        //   console.log(  responce);
+            this.setState({products:responce.data});
+        })
+
+    }
+
+
     render() { 
+       // console.log(this.state.products);
+
+        const listProducts = this.state.products.map((item, index)=>{
+            return(
+                <ProductItem key={index} image={item.image} title={item.title} text={item.text} id={item.id} />
+            );
+        });
+
         return ( 
             <React.Fragment>
                 <div className="row">
-
-                
-                <ProductItem image="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ausgewachsenes_Wildschwein_beim_Suhlen.JPG/1200px-Ausgewachsenes_Wildschwein_beim_Suhlen.JPG"
-                title="Kaban"
-                text="Kaban is cool!!!"
-                id='1'/>
-                <ProductItem image="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ausgewachsenes_Wildschwein_beim_Suhlen.JPG/1200px-Ausgewachsenes_Wildschwein_beim_Suhlen.JPG"
-                title="Kaban"
-                text="Kaban is cool!!!"
-                id='12'/>
-                <ProductItem image="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ausgewachsenes_Wildschwein_beim_Suhlen.JPG/1200px-Ausgewachsenes_Wildschwein_beim_Suhlen.JPG"
-                title="Kaban"
-                text="Kaban is cool!!!"
-                id='13'/>
-
-
-
+                    {listProducts}
                 </div>
             </React.Fragment>
          );

@@ -45,6 +45,7 @@ export default class Header extends Component {
           <Link className="p-2 text-muted" to='/'>Home page</Link>
           <Link className="p-2 text-muted" to='/info'>Info page</Link>
           <Link className="p-2 text-muted" to='/list-products'>Products</Link>
+          <Link className="p-2 text-muted" to='/add-product'>Add product</Link>
 
           {/* <a className="p-2 text-muted" href="#">U.S.</a>
           <a className="p-2 text-muted" href="#">Technology</a>
